@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cleaniq
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MAX_UPLOAD_MB
+        value: "250"
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash

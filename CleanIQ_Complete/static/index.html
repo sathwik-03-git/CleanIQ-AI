@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CleanIQ — Data Cleaning Studio</title><link rel="stylesheet" href="/static/styles.css"></head>
+<body><div class="app">
+<aside class="sidebar"><a class="brand" href="/"><span class="logo">C</span><span><b>CleanIQ</b><small>DATA QUALITY STUDIO</small></span></a><div class="side-label">WORKSPACE</div><div class="nav active">▦ &nbsp; Data overview</div><div class="privacy"><b>Privacy first</b><p>Files are processed by this app's server and kept temporarily for your session. Do not upload sensitive data to a public deployment.</p></div><div class="side-foot">CLEAN DATA. CLEAR DECISIONS.</div></aside>
+<main><header><div><div class="eyebrow">DATA WORKSPACE / OVERVIEW</div><h1>Make your data <em>work smarter.</em></h1><p>Inspect, clean, validate and export CSV or Excel data in one workspace.</p></div><span class="status"><i></i> SYSTEM READY</span></header>
+<div id="notice" class="notice hidden" role="status"></div>
+<section id="upload" class="upload"><div class="upload-icon">↑</div><div><h2>Start with your dataset</h2><p>Upload a CSV, XLSX or XLSM file to inspect data quality.</p><small>Upload limit configured by server (default 250 MB)</small></div><label class="btn primary choose">Choose file<input id="file" type="file" accept=".csv,.xlsx,.xlsm"></label></section>
+<section id="workspace" class="hidden">
+<div class="dataset-head"><div><div class="eyebrow">ACTIVE DATASET</div><h2 id="filename">Dataset</h2><p id="fileMeta" class="muted"></p></div><button class="btn ghost" id="change">Change dataset</button></div>
+<div id="metrics" class="metrics"></div>
+<div class="grid">
+<section class="panel"><div class="panel-head"><div><div class="eyebrow">DATA QUALITY</div><h3>Column health</h3></div><span class="pill">AUTOMATIC PROFILE</span></div><div id="bars" class="bars"></div><div class="table-wrap"><table><thead><tr><th>Column</th><th>Type</th><th>Missing</th><th>Outliers</th></tr></thead><tbody id="columnRows"></tbody></table></div></section>
+<section class="panel assistant"><div class="eyebrow">AI ASSISTANT</div><h3>Cleaning recommendations</h3><p>Describe the outcome you want. Review suggestions before applying them. Manual cleaning works without an AI API key.</p><label class="field-label" for="instruction">YOUR CLEANING GOAL</label><textarea id="instruction" rows="3" placeholder="Example: remove duplicates and fill numeric blanks with the median"></textarea><button class="btn primary full" id="suggest">✦ Generate recommendations</button><div id="suggestions" class="suggestions hidden"></div><div class="divider"></div><div class="eyebrow">MANUAL CLEANING</div><p class="muted small">Choose operations directly — no AI key required.</p><div class="checks">
+<label><input type="checkbox" value="remove_duplicates" class="manual-op"><span><b>Remove duplicate rows</b><small>Keep the first exact match.</small></span></label>
+<label><input type="checkbox" value="fill_missing_median" class="manual-op"><span><b>Fill numeric blanks (median)</b><small>Use each numeric column's median.</small></span></label>
+<label><input type="checkbox" value="fill_missing_mode" class="manual-op"><span><b>Fill blanks (mode)</b><small>Use the most frequent value.</small></span></label>
+<label><input type="checkbox" value="standardize_text" class="manual-op"><span><b>Standardize text</b><small>Trim edges and collapse repeated spaces.</small></span></label>
+<label><input type="checkbox" value="drop_rows_with_missing" class="manual-op"><span><b>Drop rows with blanks</b><small>Removes any row containing a missing value.</small></span></label>
+<label><input type="checkbox" value="drop_columns_with_missing" class="manual-op"><span><b>Drop columns with blanks</b><small>Removes every column that contains missing values.</small></span></label>
+<label><input type="checkbox" value="detect_outliers" class="manual-op"><span><b>Detect outliers</b><small>Reports unusual values; does not remove them.</small></span></label>
+</div><button class="btn dark full" id="manualApply">Apply selected cleaning</button></section>
+</div>
+<section class="panel preview-panel"><div class="panel-head"><div><div class="eyebrow">DATA PREVIEW</div><h3>First 10 rows <span id="previewLabel" class="muted">Original data</span></h3></div><span class="pill" id="previewCount">PREVIEW</span></div><div class="table-wrap"><table><thead id="previewHead"></thead><tbody id="previewBody"></tbody></table></div></section>
+<section id="results" class="panel results hidden"><div class="panel-head"><div><div class="eyebrow">CLEANING RESULTS</div><h3>Review the outcome</h3></div><span class="pill success-pill">READY TO EXPORT</span></div><div id="resultStats" class="metrics"></div><ul id="report" class="report"></ul><div class="download-bar"><div><b>Export your cleaned dataset</b><small>Choose a format to download the current result.</small></div><div class="download-actions"><button class="btn ghost" id="csv">↓ Download CSV</button><button class="btn primary" id="xlsx">↓ Download Excel</button></div></div></section>
+</section><footer><span>CleanIQ © 2026</span><span>AI-assisted decisions. Human-approved actions.</span></footer></main></div><script src="/static/app.js" defer></script></body></html>
